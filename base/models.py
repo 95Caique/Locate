@@ -18,15 +18,14 @@ class Cliente(models.Model):
 
 
 class TipoImovel(models.TextChoices):
-    APARTEMENTO = 'APARTAMENTO, APARTAMENTO'
-    KITNET = 'KITNET, KITNET'
-    CASA = 'CASA, CASA'
+    APARTEMENTO = 'APARTAMENTO'
+    KITNET = 'KITNET'
+    CASA = 'CASA'
 
-# Responsável por cadastrar imóveis
 
 
 class Imovel(models.Model):
-    codigo = models.CharField(max_length=100)
+    codigo = models.CharField(max_length=100, verbose_name='Código')
     tipo_item = models.CharField(max_length=100, choices=TipoImovel.choices)
     endereco = models.TextField()
     preco = models.DecimalField(max_digits=10, decimal_places=2)
@@ -40,7 +39,6 @@ class Imovel(models.Model):
         verbose_name_plural = 'Imoveis'
         ordering = ['-id']
 
-# Responsável por cadastrar imágens do imóvel
 
 class ImovelImagens(models.Model):
     imagem = models.ImageField('imagens', upload_to='images')
